@@ -8,17 +8,104 @@ body {
     margin: 0;
     --background-color-divs: rgb(189, 189, 189);
     --font-size-divs: 15vw;
+    --icon-height: 15vh;
+    --icon-width: 130px;
+    --icon-margin-top: 15px;
 }
 
+/* header */
 .header {
     width: 100vw;
     height: 100px;
     background-color: grey;
 }
 
+/* main */
 .container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* main / container / start screen */
+
+.playGameHeader {
+    width: 100vw;
+    height: 100px;
     display: flex;
     justify-content: center;
+    text-align: center;
+    font-size: 5rem;
+}
+
+.startScreen {
+    border: 2px solid black;
+    width: 100vw;
+    height: 400px;
+    background-color: rgb(22, 22, 46);
+    display: grid;
+    grid-template-columns: repeat(4, 135px);
+    grid-template-rows: 150px 150px;
+    justify-content: center;
+}
+
+
+.dracula {
+    background: url(./images/dracula.png);  
+    background-repeat: no-repeat;
+    padding: 0;
+    height: var(--icon-height);
+    max-width: var(--icon-width);
+    margin-top: var(--icon-margin-top);
+}
+
+.dracula:hover {
+    transition: 1s;
+    margin-top: -10px;
+}
+
+.reaper {
+    background: url(./images/reaper.png);
+    background-repeat: no-repeat;
+    padding: 0;
+    height: var(--icon-height);
+    max-width: var(--icon-width);
+    margin-top: var(--icon-margin-top);
+}
+
+.reaper:hover {
+    transition: 1s;
+    margin-top: -10px;
+}
+
+.scarecrow {
+    background: url(./images/scarecrow.png);
+    background-repeat: no-repeat;
+    padding: 0;
+    height: var(--icon-height);
+    max-width: var(--icon-width);
+    margin-top: var(--icon-margin-top);
+}
+
+.scarecrow:hover {
+    transition: 1s;
+    margin-top: -10px;
+}
+
+.frankenstein {
+    background: url(./images/frankenstein.png);
+    background-repeat: no-repeat;
+    padding: 0;
+    height: var(--icon-height);
+    max-width: var(--icon-width);
+    margin-top: var(--icon-margin-top);
+}
+
+.frankenstein:hover {
+    transition: 1s;
+    margin-top: -10px;
 }
 
 button {
@@ -36,6 +123,8 @@ button {
 .divStyle {
     background-color: var(--background-color-divs);
     font-size: var(--font-size-divs);
+    display: flex;
+    justify-content: center;
 }
 
 #unique1,
@@ -61,3 +150,5 @@ button {
 #unique9{
     border-top: 2px solid black;
 }
+
+/* footer */
