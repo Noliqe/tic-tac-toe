@@ -1,0 +1,63 @@
+html {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    --background-color-divs: rgb(189, 189, 189);
+    --font-size-divs: 15vw;
+}
+
+.header {
+    width: 100vw;
+    height: 100px;
+    background-color: grey;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    border: none;
+}
+
+.gridContainer {
+    height: 700px;
+    width: 700px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.divStyle {
+    background-color: var(--background-color-divs);
+    font-size: var(--font-size-divs);
+}
+
+#unique1,
+#unique4,
+#unique7{
+    border-right: 2px solid black;
+}
+
+#unique3,
+#unique6,
+#unique9{
+    border-left: 2px solid black;
+}
+
+#unique1,
+#unique2,
+#unique3{
+    border-bottom: 2px solid black;
+}
+
+#unique7,
+#unique8,
+#unique9{
+    border-top: 2px solid black;
+}
