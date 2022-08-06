@@ -170,8 +170,55 @@ let choosePlayer = (function () {
     }
 })();
 
-choosePlayer.selectPlayer();
+//choosePlayer.selectPlayer();
 
+const removeAvatars = (avatar) => {
+
+    if (avatar === 'dracula') {
+        setTimeout(() => {
+        let z = document.body.querySelector('.container');
+        let x = document.body.querySelector('.playGameHeader');
+        let a = document.body.querySelector('.startScreen');
+        let e = document.querySelector('.dracula');
+        a.removeChild(e);
+        z.removeChild(x);
+        z.removeChild(a);
+    }, "3200");
+    } else if (avatar === 'scarecrow') {
+        setTimeout(() => {
+            let z = document.body.querySelector('.container');
+            let x = document.body.querySelector('.playGameHeader');
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.scarecrow');
+            a.removeChild(e);
+            z.removeChild(x);
+            z.removeChild(a);
+        }, "3200");
+    } else if (avatar === 'reaper') {
+        setTimeout(() => {
+            let z = document.body.querySelector('.container');
+            let x = document.body.querySelector('.playGameHeader');
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.reaper');
+            a.removeChild(e);
+            z.removeChild(x);
+            z.removeChild(a);
+        }, "3200");
+    } else if (avatar === 'frankenstein') {
+        setTimeout(() => {
+            let z = document.body.querySelector('.container');
+            let x = document.body.querySelector('.playGameHeader');
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.frankenstein');
+            a.removeChild(e);
+            z.removeChild(x);
+            z.removeChild(a);
+        }, "3200");
+    }
+
+}
+
+// change header text, add animation, remove characters!
 let avatarSelect = (function () {
 
     function dracula () {
@@ -196,15 +243,11 @@ let avatarSelect = (function () {
             document.getElementById('dracula').style.animation = "chosen 3s, spin 3s";
         }, "500");
 
+        let drac = removeAvatars('dracula');
+
         setTimeout(() => {
-            let z = document.body.querySelector('.container');
-            let x = document.body.querySelector('.playGameHeader');
-            let a = document.body.querySelector('.startScreen');
-            let e = document.querySelector('.dracula');
-            a.removeChild(e);
-            z.removeChild(x);
-            z.removeChild(a);
-        }, "3200");
+            return computerAvatar('dracula');
+        }, "3500");
     }
     function scarecrow () {
         let x = document.getElementById('scarecrow');
@@ -228,15 +271,11 @@ let avatarSelect = (function () {
             document.getElementById('scarecrow').style.animation = "chosen 3s, spin 3s";
         }, "500");
 
+        let scare = removeAvatars('scarecrow');
+
         setTimeout(() => {
-            let z = document.body.querySelector('.container');
-            let x = document.body.querySelector('.playGameHeader');
-            let a = document.body.querySelector('.startScreen');
-            let e = document.querySelector('.scarecrow');
-            a.removeChild(e);
-            z.removeChild(x);
-            z.removeChild(a);
-        }, "3200");
+            return computerAvatar('scarecrow');
+        }, "3500");
     }
     function reaper () {
         let x = document.getElementById('reaper');
@@ -260,15 +299,11 @@ let avatarSelect = (function () {
             document.getElementById('reaper').style.animation = "chosen2 3s, spin 3s";
         }, "500");
 
+        let reap = removeAvatars('reaper');
+
         setTimeout(() => {
-            let z = document.body.querySelector('.container');
-            let x = document.body.querySelector('.playGameHeader');
-            let a = document.body.querySelector('.startScreen');
-            let e = document.querySelector('.reaper');
-            a.removeChild(e);
-            z.removeChild(x);
-            z.removeChild(a);
-        }, "3200");
+            return computerAvatar('reaper');
+        }, "3500");
     }
     function frankenstein () {
         let x = document.getElementById('frankenstein');
@@ -292,15 +327,11 @@ let avatarSelect = (function () {
             document.getElementById('frankenstein').style.animation = "chosen2 3s, spin 3s";
         }, "500");
 
+        let frank = removeAvatars('frankenstein');
+
         setTimeout(() => {
-            let z = document.body.querySelector('.container');
-            let x = document.body.querySelector('.playGameHeader');
-            let a = document.body.querySelector('.startScreen');
-            let e = document.querySelector('.frankenstein');
-            a.removeChild(e);
-            z.removeChild(x);
-            z.removeChild(a);
-        }, "3200");
+            return computerAvatar('frankenstein');
+        }, "3500");
     }
     return {
         dracula,
@@ -310,6 +341,105 @@ let avatarSelect = (function () {
     }
 })();
 
+// choose random computer avatar
+const computerAvatar = (avatar) => {
+
+    function container (avatar) {
+        let container = document.body.querySelector('.container');
+        let playGameHeader = document.createElement('div');
+        container.appendChild(playGameHeader);
+        playGameHeader.classList.add('playGameHeader');
+
+        const avatarContainer = document.createElement('div');
+        container.appendChild(avatarContainer);
+        avatarContainer.classList.add('startScreen');
+        
+    if (avatar === 'dracula') {
+        let playerDracula = document.createElement('button');
+        avatarContainer.appendChild(playerDracula);
+        playerDracula.classList.add('dracula')
+        playerDracula.setAttribute('id', 'dracula');
+        playGameHeader.textContent = 'Computer has chosen dracula!';
+        setTimeout(() => {
+            document.getElementById('dracula').style.animation = "chosen 3s, spin 3s";
+        }, "500");
+        let drac = removeAvatars('dracula');
+    } else if (avatar === 'scarecrow') {
+        let playerScarecrow = document.createElement('button');
+        avatarContainer.appendChild(playerScarecrow);
+        playerScarecrow.classList.add('scarecrow')
+        playerScarecrow.setAttribute('id', 'scarecrow');
+        playGameHeader.textContent = 'Computer has chosen scarecrow!';
+        setTimeout(() => {
+            document.getElementById('scarecrow').style.animation = "chosen 3s, spin 3s";
+        }, "500");
+        let scare = removeAvatars('scarecrow');
+    } else if (avatar === 'reaper') {
+        let playerReaper = document.createElement('button');
+        avatarContainer.appendChild(playerReaper);
+        playerReaper.classList.add('reaper')
+        playerReaper.setAttribute('id', 'reaper');
+        playGameHeader.textContent = 'Computer has chosen reaper!';
+        setTimeout(() => {
+            document.getElementById('reaper').style.animation = "chosen2 3s, spin 3s";
+        }, "500");
+        let reap = removeAvatars('reaper');
+    } else if (avatar === 'frankenstein') {
+        let playerFrankenstein = document.createElement('button');
+        avatarContainer.appendChild(playerFrankenstein);
+        playerFrankenstein.classList.add('frankenstein')
+        playerFrankenstein.setAttribute('id', 'frankenstein');
+        playGameHeader.textContent = 'Computer has chosen frankenstein!';
+        setTimeout(() => {
+            document.getElementById('frankenstein').style.animation = "chosen2 3s, spin 3s";
+        }, "500");
+        let frank = removeAvatars('frankenstein');
+    }};
+
+    if (avatar === 'dracula') {
+        let computerAvatars = ['scarecrow', 'reaper', 'frankenstein'];
+        const randomAvatar = Math.floor(Math.random() * computerAvatars.length);
+        if (randomAvatar === 0) {
+            container('scarecrow');
+        } else if (randomAvatar === 1) {
+            container('reaper');
+        } else if (randomAvatar === 2) {
+            container('frankenstein');
+        }
+    } else if (avatar === 'scarecrow') {
+        let computerAvatars = ['dracula', 'reaper', 'frankenstein'];
+        const randomAvatar = Math.floor(Math.random() * computerAvatars.length);
+        if (randomAvatar === 0) {
+            container('dracula');
+        } else if (randomAvatar === 1) {
+            container('reaper');
+        } else if (randomAvatar === 2) {
+            container('frankenstein');
+        }
+    } else if (avatar === 'reaper') {
+        let computerAvatars = ['dracula', 'scarecrow', 'frankenstein'];
+        const randomAvatar = Math.floor(Math.random() * computerAvatars.length);
+        if (randomAvatar === 0) {
+            container('dracula');
+        } else if (randomAvatar === 1) {
+            container('scarecrow');
+        } else if (randomAvatar === 2) {
+            container('frankenstein');
+        }
+    } else if (avatar === 'frankenstein') {
+        let computerAvatars = ['dracula', 'scarecrow', 'reaper'];
+        const randomAvatar = Math.floor(Math.random() * computerAvatars.length);
+        if (randomAvatar === 0) {
+            container('dracula');
+        } else if (randomAvatar === 1) {
+            container('scarecrow');
+        } else if (randomAvatar === 2) {
+            container('reaper');
+        }
+    }
+};
+
+computerAvatar();
 
 // make tic-tac-toe grid
 let gameboard = (function() {
