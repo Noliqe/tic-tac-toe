@@ -107,17 +107,6 @@ let chooseMode = (function () {
 // choosePlayer
 let choosePlayer = (function () {
 
-    function playGameContainer () {
-    const playGameContainer = document.body.querySelector('.container');
-    const playGameHeader = document.createElement('div');
-    playGameContainer.appendChild(playGameHeader);
-    playGameHeader.classList.add('playGameHeader');
-    playGameHeader.setAttribute('id', 'playGameHeader');
-
-    const playGame = document.createElement('div');
-    playGameContainer.appendChild(playGame);
-    playGame.classList.add('startScreen');
-    }
 
     function selectDracula (){
         let x =  'avatarSelect.dracula()';
@@ -138,64 +127,180 @@ let choosePlayer = (function () {
 
 
     function selectPlayer() {
-        const playGame = document.querySelector('.startScreen');
+        
+        const playGameContainer = document.body.querySelector('.container');
+        const playGameHeader = document.createElement('div');
+        playGameContainer.appendChild(playGameHeader);
+        playGameHeader.classList.add('playGameHeader');
+        playGameHeader.setAttribute('id', 'playGameHeader');
+    
+        const playGame = document.createElement('div');
+        playGameContainer.appendChild(playGame);
+        playGame.classList.add('startScreen');
         playGameHeader.textContent = 'Select your player!';
+        
         //dracula
-    let playerDracula = document.createElement('button');
-    playGame.appendChild(playerDracula);
-    playerDracula.classList.add('dracula');
-    playerDracula.setAttribute('id', 'dracula');
-    playerDracula.setAttribute('onclick', selectDracula());
+        let playerDracula = document.createElement('button');
+        playGame.appendChild(playerDracula);
+        playerDracula.classList.add('dracula');
+        playerDracula.setAttribute('id', 'dracula');
+        playerDracula.setAttribute('onclick', selectDracula());
         //scarecrow
-    let playerScarecrow = document.createElement('button');
-    playGame.appendChild(playerScarecrow);
-    playerScarecrow.classList.add('scarecrow')
-    playerScarecrow.setAttribute('id', 'scarecrow');
-    playerScarecrow.setAttribute('onclick', selectScarecrow());
+        let playerScarecrow = document.createElement('button');
+        playGame.appendChild(playerScarecrow);
+        playerScarecrow.classList.add('scarecrow')
+        playerScarecrow.setAttribute('id', 'scarecrow');
+        playerScarecrow.setAttribute('onclick', selectScarecrow());
         //reaper
-    let playerReaper = document.createElement('button');
-    playGame.appendChild(playerReaper);
-    playerReaper.classList.add('reaper')
-    playerReaper.setAttribute('id', 'reaper');
-    playerReaper.setAttribute('onclick', selectReaper());
+        let playerReaper = document.createElement('button');
+        playGame.appendChild(playerReaper);
+        playerReaper.classList.add('reaper')
+        playerReaper.setAttribute('id', 'reaper');
+        playerReaper.setAttribute('onclick', selectReaper());
         //frankenstein
-    let playerFrankenstein = document.createElement('button');
-    playGame.appendChild(playerFrankenstein);
-    playerFrankenstein.classList.add('frankenstein')
-    playerFrankenstein.setAttribute('id', 'frankenstein');
-    playerFrankenstein.setAttribute('onclick', selectFrankenstein());
+        let playerFrankenstein = document.createElement('button');
+        playGame.appendChild(playerFrankenstein);
+        playerFrankenstein.classList.add('frankenstein')
+        playerFrankenstein.setAttribute('id', 'frankenstein');
+        playerFrankenstein.setAttribute('onclick', selectFrankenstein());
     }
 
     return{
-        playGameContainer,
         selectPlayer
     }
 })();
 
-//choosePlayer.playGameContainer();
-//choosePlayer.selectPlayer();
+choosePlayer.selectPlayer();
 
 let avatarSelect = (function () {
 
     function dracula () {
         let x = document.getElementById('dracula');
         let y = document.getElementById('playGameHeader');
-        return y.textContent = 'You\'ve chosen Dracula!'
+        y.textContent = 'You\'ve chosen Dracula!'
+
+        setTimeout(() => {
+            let a = document.body.querySelector('.startScreen');
+            let b = document.querySelector('.scarecrow');
+            a.removeChild(b);
+
+            let c = document.querySelector('.reaper');
+            a.removeChild(c);
+    
+            let d = document.querySelector('.frankenstein');
+            a.removeChild(d);
+
+        }, "10");
+
+        setTimeout(() => {
+            document.getElementById('dracula').style.animation = "chosen 3s, spin 3s";
+        }, "500");
+
+        setTimeout(() => {
+            let z = document.body.querySelector('.container');
+            let x = document.body.querySelector('.playGameHeader');
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.dracula');
+            a.removeChild(e);
+            z.removeChild(x);
+            z.removeChild(a);
+        }, "3200");
     }
     function scarecrow () {
         let x = document.getElementById('scarecrow');
         let y = document.getElementById('playGameHeader');
-        return y.textContent = 'You\'ve chosen Scarecrow!'
+        y.textContent = 'You\'ve chosen Scarecrow!'
+
+        setTimeout(() => {
+            let a = document.body.querySelector('.startScreen');
+            let b = document.querySelector('.dracula');
+            a.removeChild(b);
+
+            let c = document.querySelector('.reaper');
+            a.removeChild(c);
+    
+            let d = document.querySelector('.frankenstein');
+            a.removeChild(d);
+
+        }, "10");
+
+        setTimeout(() => {
+            document.getElementById('scarecrow').style.animation = "chosen 3s, spin 3s";
+        }, "500");
+
+        setTimeout(() => {
+            let z = document.body.querySelector('.container');
+            let x = document.body.querySelector('.playGameHeader');
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.scarecrow');
+            a.removeChild(e);
+            z.removeChild(x);
+            z.removeChild(a);
+        }, "3200");
     }
     function reaper () {
         let x = document.getElementById('reaper');
         let y = document.getElementById('playGameHeader');
-        return y.textContent = 'You\'ve chosen Reaper!'
+        y.textContent = 'You\'ve chosen Reaper!'
+
+        setTimeout(() => {
+            let a = document.body.querySelector('.startScreen');
+            let b = document.querySelector('.dracula');
+            a.removeChild(b);
+
+            let c = document.querySelector('.scarecrow');
+            a.removeChild(c);
+    
+            let d = document.querySelector('.frankenstein');
+            a.removeChild(d);
+
+        }, "10");
+
+        setTimeout(() => {
+            document.getElementById('reaper').style.animation = "chosen2 3s, spin 3s";
+        }, "500");
+
+        setTimeout(() => {
+            let z = document.body.querySelector('.container');
+            let x = document.body.querySelector('.playGameHeader');
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.reaper');
+            a.removeChild(e);
+            z.removeChild(x);
+            z.removeChild(a);
+        }, "3200");
     }
     function frankenstein () {
         let x = document.getElementById('frankenstein');
         let y = document.getElementById('playGameHeader');
-        return y.textContent = 'You\'ve chosen Frankenstein!'
+        y.textContent = 'You\'ve chosen Frankenstein!'
+
+        setTimeout(() => {
+            let a = document.body.querySelector('.startScreen');
+            let b = document.querySelector('.dracula');
+            a.removeChild(b);
+
+            let c = document.querySelector('.scarecrow');
+            a.removeChild(c);
+    
+            let d = document.querySelector('.reaper');
+            a.removeChild(d);
+
+        }, "10");
+
+        setTimeout(() => {
+            document.getElementById('frankenstein').style.animation = "chosen2 3s, spin 3s";
+        }, "500");
+
+        setTimeout(() => {
+            let z = document.body.querySelector('.container');
+            let x = document.body.querySelector('.playGameHeader');
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.frankenstein');
+            a.removeChild(e);
+            z.removeChild(x);
+            z.removeChild(a);
+        }, "3200");
     }
     return {
         dracula,

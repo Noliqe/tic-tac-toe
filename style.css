@@ -100,7 +100,7 @@ body {
     background-color: var(--button-active)
 }
 
-/* start screen */
+/* Choose player */
 
 .playGameHeader {
     width: 100vw;
@@ -112,14 +112,14 @@ body {
 }
 
 .startScreen {
-    border: 2px solid black;
+    margin-top: 5vh;
     width: 100vw;
     height: 400px;
-    background-color: rgb(22, 22, 46);
     display: grid;
     grid-template-columns: repeat(4, 135px);
     grid-template-rows: 150px 150px;
     justify-content: center;
+    align-items: center;
 }
 
 
@@ -130,12 +130,34 @@ body {
     height: var(--icon-height);
     max-width: var(--icon-width);
     margin-top: var(--icon-margin-top);
+    position: relative;
 }
 
 .dracula:hover {
     transition: 1s;
     margin-top: -10px;
 }
+
+.dracula:active {
+    transition: 0.3s;
+    transform: scale(0.7);
+}
+
+@keyframes chosen {
+    from {left: 0px;}
+    to {left: 200px;}
+}
+
+@keyframes chosen2{
+    from {right: 0;}
+    to {right: 200px;}
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
 
 .reaper {
     background: url(./images/reaper.png);
@@ -144,11 +166,18 @@ body {
     height: var(--icon-height);
     max-width: var(--icon-width);
     margin-top: var(--icon-margin-top);
+    position: relative;
+    grid-column: 3/4;
 }
 
 .reaper:hover {
     transition: 1s;
     margin-top: -10px;
+}
+
+.reaper:active {
+    transition: 0.3s;
+    transform: scale(0.7);
 }
 
 .scarecrow {
@@ -158,11 +187,18 @@ body {
     height: var(--icon-height);
     max-width: var(--icon-width);
     margin-top: var(--icon-margin-top);
+    position: relative;
+    grid-column: 2/3;
 }
 
 .scarecrow:hover {
     transition: 1s;
     margin-top: -10px;
+}
+
+.scarecrow:active {
+    transition: 0.3s;
+    transform: scale(0.7);
 }
 
 .frankenstein {
@@ -172,11 +208,18 @@ body {
     height: var(--icon-height);
     max-width: var(--icon-width);
     margin-top: var(--icon-margin-top);
+    position: relative;
+    grid-column: 4/5;
 }
 
 .frankenstein:hover {
     transition: 1s;
     margin-top: -10px;
+}
+
+.frankenstein:active {
+    transition: 0.3s;
+    transform: scale(0.7);
 }
 
 button {
