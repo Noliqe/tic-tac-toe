@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
 html {
     padding: 0;
     margin: 0;
 }
 
 body {
+    font-family: 'Muli', sans-serif;
     padding: 0;
     margin: 0;
     --background-color-divs: rgb(189, 189, 189);
@@ -11,6 +14,7 @@ body {
     --icon-height: 15vh;
     --icon-width: 130px;
     --icon-margin-top: 15px;
+    --header-font-size: 5rem;
 }
 
 /* header */
@@ -29,7 +33,26 @@ body {
     align-items: center;
 }
 
-/* main / container / start screen */
+/* wanna play a game? */
+
+.headerWannaPlay {
+    font-size: var(--header-font-size);
+    margin-top: 10vh;
+    text-align: center;
+}
+
+.wannaPlayButton {
+    padding: 30px 50px;
+    font-size: 50px;
+    margin-top: 10vh;
+    border-radius: 10px;
+}
+
+.wannaPlayButton:hover {
+    background-color: rgb(177, 177, 177);
+}
+
+/* start screen */
 
 .playGameHeader {
     width: 100vw;

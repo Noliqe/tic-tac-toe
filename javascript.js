@@ -1,6 +1,53 @@
+// header text with button
+let wannaPlay = (function () {
+
+    function buttonOnclick () {
+        let x = 'wannaPlay.removeContent()';
+        return x;
+    }
+
+    function startNext () {
+        let y = 'startScreen.selectPlayer();';
+        return y;
+    }
+
+    function createContent () {
+        const container = document.body.querySelector('.container');
+        let header = document.createElement('div');
+        container.appendChild(header);
+        header.classList.add('headerWannaPlay')
+
+        header.textContent = 'Wanna play a game?'
+
+        let playButton = document.createElement('button');
+        container.appendChild(playButton);
+        playButton.classList.add('wannaPlayButton');
+        playButton.setAttribute('onclick', buttonOnclick(), startNext())
+        playButton.textContent = 'Play Game';
+    }
+
+
+    function removeContent() {
+        let x = document.body.querySelector('.container');
+        let y = document.querySelector('.headerWannaPlay');
+        x.removeChild(y);
+
+        let z = document.querySelector('.wannaPlayButton');
+        x.removeChild(z);
+    }
+    return {
+        createContent,
+        removeContent
+    }
+})()
+
+//wannaPlay.createContent()
+
+
 // start screen
 let startScreen = (function () {
 
+    function playGameContainer () {
     const playGameContainer = document.body.querySelector('.container');
     const playGameHeader = document.createElement('div');
     playGameContainer.appendChild(playGameHeader);
@@ -10,6 +57,7 @@ let startScreen = (function () {
     const playGame = document.createElement('div');
     playGameContainer.appendChild(playGame);
     playGame.classList.add('startScreen');
+    }
 
     function selectDracula (){
         let x =  'avatarSelect.dracula()';
@@ -30,6 +78,7 @@ let startScreen = (function () {
 
 
     function selectPlayer() {
+        const playGame = document.querySelector('.startScreen');
         playGameHeader.textContent = 'Select your player!';
         //dracula
     let playerDracula = document.createElement('button');
@@ -58,9 +107,13 @@ let startScreen = (function () {
     }
 
     return{
+        playGameContainer,
         selectPlayer
     }
 })();
+
+//startScreen.playGameContainer();
+//startScreen.selectPlayer();
 
 let avatarSelect = (function () {
 
@@ -92,7 +145,6 @@ let avatarSelect = (function () {
     }
 })();
 
-startScreen.selectPlayer();
 
 // make tic-tac-toe grid
 let gameboard = (function() {
