@@ -15,6 +15,8 @@ body {
     --icon-width: 130px;
     --icon-margin-top: 15px;
     --header-font-size: 5rem;
+    --button-hover: rgb(177, 177, 177);
+    --button-active: rgb(143, 143, 143);
 }
 
 /* header */
@@ -49,7 +51,53 @@ body {
 }
 
 .wannaPlayButton:hover {
-    background-color: rgb(177, 177, 177);
+    background-color: var(--button-hover)
+}
+
+.wannaPlayButton:active {
+    background-color: var(--button-active)
+}
+
+/* choose mode */
+
+.headerChooseMode {
+    font-size: var(--header-font-size);
+    margin-top: 10vh;
+    text-align: center;
+}
+
+.playerVsPlayerBtn {
+    padding: 30px 50px;
+    font-size: 50px;
+    margin-top: 10vh;
+    border-radius: 10px;
+    width: 40vw;
+    height: 15vh;
+}
+
+.playerVsPlayerBtn:hover {
+    background-color: var(--button-hover)
+}
+
+.playerVsPlayerBtn:active {
+    background-color: var(--button-active)
+}
+
+.playerVsComputerBtn {
+    padding: 30px 50px;
+    font-size: 50px;
+    margin-top: 10vh;
+    border-radius: 10px;
+    width: 40vw;
+    height: 15vh;
+}
+
+.playerVsComputerBtn:hover {
+    background-color: var(--button-hover)
+}
+
+.playerVsComputerBtn:active {
+    background-color: var(--button-active)
 }
 
 /* start screen */

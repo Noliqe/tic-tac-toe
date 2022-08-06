@@ -7,7 +7,7 @@ let wannaPlay = (function () {
     }
 
     function startNext () {
-        let y = 'startScreen.selectPlayer();';
+        let y = 'choosePlayer.selectPlayer();';
         return y;
     }
 
@@ -43,9 +43,69 @@ let wannaPlay = (function () {
 
 //wannaPlay.createContent()
 
+// choose player vs player or player vs computer
+let chooseMode = (function () {
 
-// start screen
-let startScreen = (function () {
+    function buttonVsPlayer() {
+        let x = 'x';
+        return x;
+    }
+
+    function buttonVsComputer() {
+        let y = 'y';
+        return y;
+    }
+
+    function buttonOnclick () {
+        let x = 'chooseMode.removeContent()';
+        return x;
+    }
+
+    function createContent () {
+        const container = document.body.querySelector('.container');
+        let headerChooseMode = document.createElement('div');
+        container.appendChild(headerChooseMode);
+        headerChooseMode.classList.add('headerChooseMode');
+
+        headerChooseMode.textContent = 'Choose mode';
+
+        let playerVsPlayer = document.createElement('button');
+        container.appendChild(playerVsPlayer);
+        playerVsPlayer.classList.add('playerVsPlayerBtn');
+        //playerVsPlayer.setAttribute('onclick', buttonVsPlayer())
+        playerVsPlayer.setAttribute('onclick', buttonOnclick())
+        playerVsPlayer.textContent = 'Player vs player';
+
+        let playerVsComputer = document.createElement('button');
+        container.appendChild(playerVsComputer);
+        playerVsComputer.classList.add('playerVsComputerBtn');
+        //playerVsComputer.setAttribute('onclick', buttonVsComputer())
+        playerVsComputer.setAttribute('onclick', buttonOnclick())
+        playerVsComputer.textContent = 'Player vs computer';
+    }
+
+    function removeContent() {
+        let x = document.body.querySelector('.container');
+        let y = document.querySelector('.headerChooseMode');
+        x.removeChild(y);
+
+        let z = document.querySelector('.playerVsPlayerBtn');
+        x.removeChild(z);
+
+        let a = document.querySelector('.playerVsComputerBtn');
+        x.removeChild(a);
+    }
+
+    return {
+        createContent,
+        removeContent
+    }
+})()
+
+//chooseMode.createContent()
+
+// choosePlayer
+let choosePlayer = (function () {
 
     function playGameContainer () {
     const playGameContainer = document.body.querySelector('.container');
@@ -112,8 +172,8 @@ let startScreen = (function () {
     }
 })();
 
-//startScreen.playGameContainer();
-//startScreen.selectPlayer();
+//choosePlayer.playGameContainer();
+//choosePlayer.selectPlayer();
 
 let avatarSelect = (function () {
 
