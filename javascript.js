@@ -625,14 +625,26 @@ const letsGame = () => {
     firstAvatar.style.animation = "left 1.5s infinite";
     secondAvatar.style.animation = "right 1.5s infinite";
 
-    //setTimeout(() => {
-        //gameboard.grid()
-    //}, "3000");
-    
+    setTimeout(() => {
+        removeLetsGame();
+        gameboard.grid()
+        clickPlayerVsPlayer();
+    }, "3000");
 
 };
 
 //letsGame();
+
+const removeLetsGame = () => {
+    let a = document.body.querySelector('.container');
+    let b = document.body.querySelector('.playGameHeader');
+    let c = document.body.querySelector('.letsGameDiv');
+    //let d = document.body.querySelector('.firstAvatar');
+    //let e = document.body.querySelector('.secondAvatar');
+
+    a.removeChild(c);
+    a.removeChild(b);
+}
 
 //computerAvatar();
 
@@ -647,31 +659,67 @@ let gameboard = (function() {
         return uniqId;
     }
 
-    // make unique function clickevent
-    function uniqueClickEvent() {
-        let uniqCE = 'clickEvent.' + ('clickEvent' + counter + '()');
-        return uniqCE
-    }
-
     // create div
     function grid() {
 
-        const gridContainer = createElement('div');
-        document.body.appendChild(gridContainer);
+        const container = document.body.querySelector('.container');
+        const gameContainer = document.createElement('div');
+        container.appendChild(gameContainer);
+        gameContainer.classList.add('gameContainer');
+
+
+        const playerOneDiv = document.createElement ('div');
+        gameContainer.appendChild(playerOneDiv);
+        playerOneDiv.classList.add('playerOneDiv')
+        const playerOneAvatar = document.createElement ('div');
+        playerOneAvatar.setAttribute('id', 'playerOneAvatar');
+        playerOneDiv.appendChild(playerOneAvatar);
+
+
+        const gridContainer = document.createElement('div');
+        gameContainer.appendChild(gridContainer);
         gridContainer.setAttribute('id', 'gridContainer');
         gridContainer.classList.add('gridContainer')
 
+        const playerTwoDiv = document.createElement ('div');
+        gameContainer.appendChild(playerTwoDiv);
+        playerTwoDiv.classList.add('playerTwoDiv')
+        const playerTwoAvatar = document.createElement ('div');
+        playerTwoAvatar.setAttribute('id', 'playerTwoAvatar');
+        playerTwoDiv.appendChild(playerTwoAvatar);
+
+        if (avatarArray[0] === 'dracula') {
+            playerOneAvatar.classList.add('avatarDracula');
+        } else if (avatarArray[0] === 'scarecrow') {
+            playerOneAvatar.classList.add('avatarScarecrow');
+        } else if (avatarArray[0] === 'reaper') {
+            playerOneAvatar.classList.add('avatarReaper');
+        } else if (avatarArray[0] === 'frankenstein') {
+            playerOneAvatar.classList.add('avatarFrankenstein');
+    }
+    
+
+
+    if (avatarArray[1] === 'dracula') {
+            playerTwoAvatar.classList.add('avatarDracula');
+        } else if (avatarArray[1] === 'scarecrow') {
+            playerTwoAvatar.classList.add('avatarScarecrow');
+        } else if (avatarArray[1] === 'reaper') {
+            playerTwoAvatar.classList.add('avatarReaper');
+        } else if (avatarArray[1] === 'frankenstein') {
+            playerTwoAvatar.classList.add('avatarFrankenstein');   
+    }
+
         for (let i = 0; i < 9; i++) {
-            let div = document.createElement('button');
+            let div = document.createElement('div');
             document.body.appendChild(div);
             div.setAttribute('id', uniqueId());
-            div.setAttribute('onclick', uniqueClickEvent());
             gridContainer.appendChild(div);
             div.classList.add('divStyle')
             counter += 1;
         }
     }
-
+    
     return {
         grid,
     };
@@ -686,55 +734,214 @@ let player = (function() {
     }
 })();
 
-// click on button event
-let clickEvent = (function() {
+let data = [
+    ['unique1', 'unique2', 'unique3'],
+    ['unique4', 'unique5', 'unique6'],
+    ['unique7', 'unique8', 'unique9']
+];
 
-    function clickEvent1() {
-        let x = document.getElementById('unique1');
-        return x.textContent = 'x';
-    };
-    function clickEvent2() {
-        let x = document.getElementById('unique2');
-        return x.textContent = 'x';
-    }; 
-    function clickEvent3() {
-        let x = document.getElementById('unique3');
-        return x.textContent = 'x';
-    }; 
-    function clickEvent4() {
-        let x = document.getElementById('unique4');
-        return x.textContent = 'x';
-    }; 
-    function clickEvent5() {
-        let x = document.getElementById('unique5');
-        return x.textContent = 'x';
-    }; 
-    function clickEvent6() {
-        let x = document.getElementById('unique6');
-        return x.textContent = 'x';
-    }; 
-    function clickEvent7() {
-        let x = document.getElementById('unique7');
-        return x.textContent = 'x';
-    }; 
-    function clickEvent8() {
-        let x = document.getElementById('unique8');
-        return x.textContent = 'x';
-    }; 
-    function clickEvent9() {
-        let x = document.getElementById('unique9');
-        return x.textContent = 'x';
-    }; 
-    
-    return {
-        clickEvent1,
-        clickEvent2,
-        clickEvent3,
-        clickEvent4,
-        clickEvent5,
-        clickEvent6,
-        clickEvent7,
-        clickEvent8,
-        clickEvent9
+const checkGame = (str) => {
+
+    if (data[0][0] === str && data[0][1] === str && data[0][2] === str){
+        if (str === 'o') {
+            alert('You have lost');
+        } else {
+            alert('you have won');
+        }
+    } else if (data[1][0] === str && data[1][1] === str && data[1][2] === str) {
+        if (str === 'o') {
+            alert('You have lost');
+        } else {
+            alert('you have won');
+        }
+    } else if (data[2][0] === str && data[2][1] === str && data[2][2] === str) {
+        if (str === 'o') {
+            alert('You have lost');
+        } else {
+            alert('you have won');
+        }
+    } else if (data[0][0] === str && data[1][0] === str && data[2][0] === str) {
+        if (str === 'o') {
+            alert('You have lost');
+        } else {
+            alert('you have won');
+        }
+    } else if (data[0][1] === str && data[1][1] === str && data[2][1] === str) {
+        if (str === 'o') {
+            alert('You have lost');
+        } else {
+            alert('you have won');
+        }
+    } else if (data[0][2] === str && data[1][2] === str && data[2][2] === str) {
+        if (str === 'o') {
+            alert('You have lost');
+        } else {
+            alert('you have won');
+        }
+    } else if (data[0][0] === str && data[1][1] === str && data[2][2] === str) {
+        if (str === 'o') {
+            alert('You have lost');
+        } else {
+            alert('you have won');
+        }
+    } else if (data[0][2] === str && data[1][1] === str && data[2][0] === str) {
+        if (str === 'o') {
+            alert('You have lost');
+        } else {
+            alert('you have won');
+        }
     }
-})();
+} 
+
+
+
+// click on button event
+const clickPlayerVsPlayer = () => {
+    let gameArray = [];
+    let playerTurn = 0;
+let unique1 = document.getElementById('unique1');
+let unique2 = document.getElementById('unique2');
+let unique3 = document.getElementById('unique3');
+let unique4 = document.getElementById('unique4');
+let unique5 = document.getElementById('unique5');
+let unique6 = document.getElementById('unique6');
+let unique7 = document.getElementById('unique7');
+let unique8 = document.getElementById('unique8');
+if (playerVs === 1) {
+    unique1.addEventListener('click', () => {
+        if (gameArray.indexOf('unique1') === -1) {
+            gameArray.push('unique1');
+            if (playerTurn === 0) {
+                unique1.textContent = 'X';
+                playerTurn = 1;
+                data[0][0]= 'x';
+                checkGame('x');
+            } else if (playerTurn === 1) {
+                unique1.textContent = 'O';
+                playerTurn = 0;
+                data[0][0]= 'o';
+                checkGame('o');
+            }}
+    })
+    unique2.addEventListener('click', () => {
+        if (gameArray.indexOf('unique2') === -1) {
+            gameArray.push('unique2');
+            if (playerTurn === 0) {
+                unique2.textContent = 'X';
+                playerTurn = 1;
+                data[0][1]= 'x';
+                checkGame('x');
+            } else if (playerTurn === 1) {
+                unique2.textContent = 'O';
+                playerTurn = 0;
+                data[0][1]= 'o';
+                checkGame('o');
+            }}
+    })
+    unique3.addEventListener('click', () => {
+        if (gameArray.indexOf('unique3') === -1) {
+            gameArray.push('unique3');
+            if (playerTurn === 0) {
+                unique3.textContent = 'X';
+                playerTurn = 1;
+                data[0][2]= 'x';
+                checkGame('x');
+            } else if (playerTurn === 1) {
+                unique3.textContent = 'O';
+                playerTurn = 0;
+                data[0][2]= 'o';
+                checkGame('o');
+            }}
+    })
+    unique4.addEventListener('click', () => {
+        if (gameArray.indexOf('unique4') === -1) {
+            gameArray.push('unique4');
+            if (playerTurn === 0) {
+                unique4.textContent = 'X';
+                playerTurn = 1;
+                data[1][0]= 'x';
+                checkGame('x');
+            } else if (playerTurn === 1) {
+                unique4.textContent = 'O';
+                playerTurn = 0;
+                data[1][0]= 'o';
+                checkGame('o');
+            }}
+    })
+    unique5.addEventListener('click', () => {
+        if (gameArray.indexOf('unique5') === -1) {
+            gameArray.push('unique5');
+            if (playerTurn === 0) {
+                unique5.textContent = 'X';
+                playerTurn = 1;
+                data[1][1]= 'x';
+                checkGame('x');
+            } else if (playerTurn === 1) {
+                unique5.textContent = 'O';
+                playerTurn = 0;
+                data[1][1]= 'o';
+                checkGame('o');
+            }}
+    })
+    unique6.addEventListener('click', () => {
+        if (gameArray.indexOf('unique6') === -1) {
+            gameArray.push('unique6');
+            if (playerTurn === 0) {
+                unique6.textContent = 'X';
+                playerTurn = 1;
+                data[1][2]= 'x';
+                checkGame('x');
+            } else if (playerTurn === 1) {
+                unique6.textContent = 'O';
+                playerTurn = 0;
+                data[1][2]= 'o';
+                checkGame('o');
+            }}
+    })
+    unique7.addEventListener('click', () => {
+        if (gameArray.indexOf('unique7') === -1) {
+            gameArray.push('unique7');
+            if (playerTurn === 0) {
+                unique7.textContent = 'X';
+                playerTurn = 1;
+                data[2][0]= 'x';
+                checkGame('x');
+            } else if (playerTurn === 1) {
+                unique7.textContent = 'O';
+                playerTurn = 0;
+                data[2][0]= 'o';
+                checkGame('o');
+            }}
+    })
+    unique8.addEventListener('click', () => {
+        if (gameArray.indexOf('unique8') === -1) {
+            gameArray.push('unique8');
+            if (playerTurn === 0) {
+                unique8.textContent = 'X';
+                playerTurn = 1;
+                data[2][1]= 'x';
+                checkGame('x');
+            } else if (playerTurn === 1) {
+                unique8.textContent = 'O';
+                playerTurn = 0;
+                data[2][1]= 'o';
+                checkGame('o');
+            }}
+    })
+    unique9.addEventListener('click', () => {
+        if (gameArray.indexOf('unique9') === -1) {
+            gameArray.push('unique9');
+            if (playerTurn === 0) {
+                unique9.textContent = 'X';
+                playerTurn = 1;
+                data[2][2]= 'x';
+                checkGame('x');
+            } else if (playerTurn === 1) {
+                unique9.textContent = 'O';
+                playerTurn = 0;
+                data[2][2]= 'o';
+                checkGame('o');
+            }}
+    })
+}
+};

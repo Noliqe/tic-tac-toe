@@ -36,6 +36,10 @@ body {
     align-items: center;
 }
 
+button {
+    border: none;
+}
+
 
 /* wanna play a game? */
 
@@ -267,6 +271,7 @@ body {
     max-width: var(--icon-width);
     margin-top: var(--icon-margin-top);
     position: relative;
+    flex-grow: 1;
 }
 
 .avatarScarecrow {
@@ -277,6 +282,7 @@ body {
     max-width: var(--icon-width);
     margin-top: var(--icon-margin-top);
     position: relative;
+    flex-grow: 1;
 }
 
 .avatarReaper {
@@ -287,6 +293,7 @@ body {
     max-width: var(--icon-width);
     margin-top: var(--icon-margin-top);
     position: relative;
+    flex-grow: 1;
 }
 
 .avatarFrankenstein {
@@ -297,22 +304,45 @@ body {
     max-width: var(--icon-width);
     margin-top: var(--icon-margin-top);
     position: relative;
+    flex-grow: 1;
 }
 
 .versus {
     font-size: 5rem;
 }
 
-button {
-    border: none;
+/* grid */
+
+
+
+.gameContainer {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 750px 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
 }
 
 .gridContainer {
-    height: 700px;
-    width: 700px;
+    height: 750px;
+    width: 750px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 250px);
+    grid-template-rows: repeat(3, 250px);
+}
+
+.playerOneDiv {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.playerTwoDiv {
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .divStyle {
@@ -320,6 +350,7 @@ button {
     font-size: var(--font-size-divs);
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 #unique1,
