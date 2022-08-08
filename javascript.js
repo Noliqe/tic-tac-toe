@@ -241,7 +241,7 @@ let avatarSelect = (function () {
             a.removeChild(b);
             let c = document.querySelector('.reaper');
             a.removeChild(c);
-            let d = document.querySelector('.scarecrow');
+            let d = document.querySelector('.frankenstein');
             a.removeChild(d);
             }
         }, "10");
@@ -255,8 +255,14 @@ let avatarSelect = (function () {
         setTimeout(() => {
             computerAvatar('dracula');
             secondPlayer();
-            if (avatarArray[1] !== undefined) {
-            letsGame();}
+            if (avatarArray[1] !== undefined && playerVs === 3) {
+                setTimeout(() => {
+                    if (avatarArray[1] !== undefined) {
+                    letsGame();}
+                }, "3600");
+            }if (avatarArray[1] !== undefined && playerVs === 1) {
+                letsGame();
+            }
         }, "3500");
     }
     function scarecrow () {
@@ -299,8 +305,14 @@ let avatarSelect = (function () {
         setTimeout(() => {
             computerAvatar('scarecrow');
             secondPlayer();
-            if (avatarArray[1] !== undefined) {
-            letsGame();}
+            if (avatarArray[1] !== undefined && playerVs === 3) {
+                setTimeout(() => {
+                    if (avatarArray[1] !== undefined) {
+                    letsGame();}
+                }, "3600");
+            }if (avatarArray[1] !== undefined && playerVs === 1) {
+                letsGame();
+            }
         }, "3500");
     }
     function reaper () {
@@ -344,8 +356,14 @@ let avatarSelect = (function () {
         setTimeout(() => {
             computerAvatar('reaper');
             secondPlayer();
-            if (avatarArray[1] !== undefined) {
-            letsGame();}
+            if (avatarArray[1] !== undefined && playerVs === 3) {
+                setTimeout(() => {
+                    if (avatarArray[1] !== undefined) {
+                    letsGame();}
+                }, "3600");
+            }if (avatarArray[1] !== undefined && playerVs === 1) {
+                letsGame();
+            }
         }, "3500");
     }
     function frankenstein () {
@@ -391,8 +409,14 @@ let avatarSelect = (function () {
         setTimeout(() => {
             computerAvatar('frankenstein');
             secondPlayer();
-            if (avatarArray[1] !== undefined) {
-            letsGame();}
+            if (avatarArray[1] !== undefined && playerVs === 3) {
+                setTimeout(() => {
+                    if (avatarArray[1] !== undefined) {
+                    letsGame();}
+                }, "3600");
+            }if (avatarArray[1] !== undefined && playerVs === 1) {
+                letsGame();
+            }
         }, "3500");
     }
     return {
@@ -500,7 +524,8 @@ const computerAvatar = (avatar) => {
         let x = 'frankenstein';
         avatarArray.push(x);
         let frank = removeAvatars('frankenstein');
-    }};
+    } 
+    };
 
     if (avatar === 'dracula') {
         let computerAvatars = ['scarecrow', 'reaper', 'frankenstein'];
@@ -543,9 +568,6 @@ const computerAvatar = (avatar) => {
             container('reaper');
         }
     } 
-    setTimeout(() => {
-        letsGame();
-    }, "3600");
 }
 };
 
@@ -602,6 +624,11 @@ const letsGame = () => {
 
     firstAvatar.style.animation = "left 1.5s infinite";
     secondAvatar.style.animation = "right 1.5s infinite";
+
+    //setTimeout(() => {
+        //gameboard.grid()
+    //}, "3000");
+    
 
 };
 
