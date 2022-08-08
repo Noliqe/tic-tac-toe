@@ -1,14 +1,13 @@
+let playerVs = 0;
+let avatarArray = [];
+
+
 // header text with button
 let wannaPlay = (function () {
 
     function buttonOnclick () {
-        let x = 'wannaPlay.removeContent()';
+        let x = 'wannaPlay.removeContent();chooseMode.createContent();';
         return x;
-    }
-
-    function startNext () {
-        let y = 'choosePlayer.selectPlayer();';
-        return y;
     }
 
     function createContent () {
@@ -22,7 +21,7 @@ let wannaPlay = (function () {
         let playButton = document.createElement('button');
         container.appendChild(playButton);
         playButton.classList.add('wannaPlayButton');
-        playButton.setAttribute('onclick', buttonOnclick(), startNext())
+        playButton.setAttribute('onclick', buttonOnclick())
         playButton.textContent = 'Play Game';
     }
 
@@ -41,25 +40,11 @@ let wannaPlay = (function () {
     }
 })()
 
-//wannaPlay.createContent()
+wannaPlay.createContent()
 
 // choose player vs player or player vs computer
 let chooseMode = (function () {
 
-    function buttonVsPlayer() {
-        let x = 'x';
-        return x;
-    }
-
-    function buttonVsComputer() {
-        let y = 'y';
-        return y;
-    }
-
-    function buttonOnclick () {
-        let x = 'chooseMode.removeContent()';
-        return x;
-    }
 
     function createContent () {
         const container = document.body.querySelector('.container');
@@ -69,18 +54,29 @@ let chooseMode = (function () {
 
         headerChooseMode.textContent = 'Choose mode';
 
+        // player vs player button
         let playerVsPlayer = document.createElement('button');
         container.appendChild(playerVsPlayer);
         playerVsPlayer.classList.add('playerVsPlayerBtn');
-        //playerVsPlayer.setAttribute('onclick', buttonVsPlayer())
-        playerVsPlayer.setAttribute('onclick', buttonOnclick())
-        playerVsPlayer.textContent = 'Player vs player';
 
+        playerVsPlayer.addEventListener('click', () => {
+            chooseMode.removeContent(); 
+            choosePlayer.selectPlayer();
+            playerVs = 1;
+        })
+        //playerVsPlayer.setAttribute('onclick', buttonVsPlayer());
+        playerVsPlayer.textContent = 'Player vs player';
+        
+        // player vs computer button
         let playerVsComputer = document.createElement('button');
         container.appendChild(playerVsComputer);
         playerVsComputer.classList.add('playerVsComputerBtn');
-        //playerVsComputer.setAttribute('onclick', buttonVsComputer())
-        playerVsComputer.setAttribute('onclick', buttonOnclick())
+        playerVsComputer.addEventListener('click', () => {
+            chooseMode.removeContent(); 
+            choosePlayer.selectPlayer();
+            playerVs = 3;
+        })
+        //playerVsComputer.setAttribute('onclick', buttonVsComputer());
         playerVsComputer.textContent = 'Player vs computer';
     }
 
@@ -107,25 +103,6 @@ let chooseMode = (function () {
 // choosePlayer
 let choosePlayer = (function () {
 
-
-    function selectDracula (){
-        let x =  'avatarSelect.dracula()';
-        return x;
-    };
-    function selectScarecrow () {
-        let x =  'avatarSelect.scarecrow()';
-        return x;
-    }
-    function selectReaper () {
-        let x =  'avatarSelect.reaper()';
-        return x;
-    }
-    function selectFrankenstein () {
-        let x =  'avatarSelect.frankenstein()';
-        return x;
-    }
-
-
     function selectPlayer() {
         
         const playGameContainer = document.body.querySelector('.container');
@@ -137,32 +114,48 @@ let choosePlayer = (function () {
         const playGame = document.createElement('div');
         playGameContainer.appendChild(playGame);
         playGame.classList.add('startScreen');
-        playGameHeader.textContent = 'Select your player!';
+        playGameHeader.textContent = 'Select your avatar!';
         
         //dracula
         let playerDracula = document.createElement('button');
         playGame.appendChild(playerDracula);
         playerDracula.classList.add('dracula');
         playerDracula.setAttribute('id', 'dracula');
-        playerDracula.setAttribute('onclick', selectDracula());
+        playerDracula.addEventListener('click', () => {
+            avatarSelect.dracula();
+            let x = 'dracula';
+            avatarArray.push(x);
+        });
         //scarecrow
         let playerScarecrow = document.createElement('button');
         playGame.appendChild(playerScarecrow);
         playerScarecrow.classList.add('scarecrow')
         playerScarecrow.setAttribute('id', 'scarecrow');
-        playerScarecrow.setAttribute('onclick', selectScarecrow());
+        playerScarecrow.addEventListener('click', () => {
+            avatarSelect.scarecrow();
+            let x = 'scarecrow';
+            avatarArray.push(x);
+        });
         //reaper
         let playerReaper = document.createElement('button');
         playGame.appendChild(playerReaper);
         playerReaper.classList.add('reaper')
         playerReaper.setAttribute('id', 'reaper');
-        playerReaper.setAttribute('onclick', selectReaper());
+        playerReaper.addEventListener('click', () => {
+            avatarSelect.reaper();
+            let x = 'reaper';
+            avatarArray.push(x);
+        });
         //frankenstein
         let playerFrankenstein = document.createElement('button');
         playGame.appendChild(playerFrankenstein);
         playerFrankenstein.classList.add('frankenstein')
         playerFrankenstein.setAttribute('id', 'frankenstein');
-        playerFrankenstein.setAttribute('onclick', selectFrankenstein());
+        playerFrankenstein.addEventListener('click', () => {
+            avatarSelect.frankenstein();
+            let x = 'frankenstein';
+            avatarArray.push(x);
+        });
     }
 
     return{
@@ -228,15 +221,28 @@ let avatarSelect = (function () {
 
         setTimeout(() => {
             let a = document.body.querySelector('.startScreen');
+            if (avatarArray[0] === 'scarecrow') {
+                let c = document.querySelector('.reaper');
+                a.removeChild(c);
+                let d = document.querySelector('.frankenstein');
+                a.removeChild(d);
+            } else if (avatarArray[0] === 'reaper') {
+                let b = document.querySelector('.scarecrow');
+                let d = document.querySelector('.frankenstein');
+                a.removeChild(d);
+            } else if (avatarArray[0] === 'frankenstein') {
+                let b = document.querySelector('.reaper');
+                a.removeChild(b);
+                let c = document.querySelector('.reaper');
+                a.removeChild(c);
+            } else {
             let b = document.querySelector('.scarecrow');
             a.removeChild(b);
-
             let c = document.querySelector('.reaper');
             a.removeChild(c);
-    
             let d = document.querySelector('.frankenstein');
             a.removeChild(d);
-
+            }
         }, "10");
 
         setTimeout(() => {
@@ -246,7 +252,7 @@ let avatarSelect = (function () {
         let drac = removeAvatars('dracula');
 
         setTimeout(() => {
-            return computerAvatar('dracula');
+            return computerAvatar('dracula'), secondPlayer();
         }, "3500");
     }
     function scarecrow () {
@@ -256,15 +262,27 @@ let avatarSelect = (function () {
 
         setTimeout(() => {
             let a = document.body.querySelector('.startScreen');
+            if (avatarArray[0] === 'dracula') {
+                let c = document.querySelector('.reaper');
+                a.removeChild(c);
+                let d = document.querySelector('.frankenstein');
+                a.removeChild(d);
+            } else if (avatarArray[0] === 'reaper') {
+                let b = document.querySelector('.dracula');
+                let d = document.querySelector('.frankenstein');
+                a.removeChild(d);
+            } else if (avatarArray[0] === 'frankenstein') {
+                let b = document.querySelector('.dracula');
+                a.removeChild(b);
+                let c = document.querySelector('.reaper');
+                a.removeChild(c);
+            } else {
             let b = document.querySelector('.dracula');
             a.removeChild(b);
-
             let c = document.querySelector('.reaper');
             a.removeChild(c);
-    
             let d = document.querySelector('.frankenstein');
-            a.removeChild(d);
-
+            a.removeChild(d);}
         }, "10");
 
         setTimeout(() => {
@@ -274,7 +292,7 @@ let avatarSelect = (function () {
         let scare = removeAvatars('scarecrow');
 
         setTimeout(() => {
-            return computerAvatar('scarecrow');
+            return computerAvatar('scarecrow'), secondPlayer();
         }, "3500");
     }
     function reaper () {
@@ -284,15 +302,28 @@ let avatarSelect = (function () {
 
         setTimeout(() => {
             let a = document.body.querySelector('.startScreen');
+            if (avatarArray[0] === 'dracula') {
+                let c = document.querySelector('.scarecrow');
+                a.removeChild(c);
+                let d = document.querySelector('.frankenstein');
+                a.removeChild(d);
+            } else if (avatarArray[0] === 'scarecrow') {
+                let b = document.querySelector('.dracula');
+                let d = document.querySelector('.frankenstein');
+                a.removeChild(d);
+            } else if (avatarArray[0] === 'frankenstein') {
+                let b = document.querySelector('.dracula');
+                a.removeChild(b);
+                let c = document.querySelector('.scarecrow');
+                a.removeChild(c);
+            } else {
             let b = document.querySelector('.dracula');
             a.removeChild(b);
-
             let c = document.querySelector('.scarecrow');
             a.removeChild(c);
-    
             let d = document.querySelector('.frankenstein');
             a.removeChild(d);
-
+            }
         }, "10");
 
         setTimeout(() => {
@@ -302,7 +333,7 @@ let avatarSelect = (function () {
         let reap = removeAvatars('reaper');
 
         setTimeout(() => {
-            return computerAvatar('reaper');
+            return computerAvatar('reaper'), secondPlayer();
         }, "3500");
     }
     function frankenstein () {
@@ -312,14 +343,28 @@ let avatarSelect = (function () {
 
         setTimeout(() => {
             let a = document.body.querySelector('.startScreen');
+            if (avatarArray[0] === 'dracula') {
+                let c = document.querySelector('.scarecrow');
+                a.removeChild(c);
+                let d = document.querySelector('.reaper');
+                a.removeChild(d);
+            } else if (avatarArray[0] === 'scarecrow') {
+                let b = document.querySelector('.dracula');
+                let d = document.querySelector('.reaper');
+                a.removeChild(d);
+            } else if (avatarArray[0] === 'reaper') {
+                let b = document.querySelector('.dracula');
+                a.removeChild(b);
+                let c = document.querySelector('.scarecrow');
+                a.removeChild(c);
+            } else {
             let b = document.querySelector('.dracula');
             a.removeChild(b);
-
             let c = document.querySelector('.scarecrow');
             a.removeChild(c);
-    
             let d = document.querySelector('.reaper');
             a.removeChild(d);
+            }
 
         }, "10");
 
@@ -329,8 +374,9 @@ let avatarSelect = (function () {
 
         let frank = removeAvatars('frankenstein');
 
+        
         setTimeout(() => {
-            return computerAvatar('frankenstein');
+            return computerAvatar('frankenstein'), secondPlayer();
         }, "3500");
     }
     return {
@@ -341,9 +387,44 @@ let avatarSelect = (function () {
     }
 })();
 
+const secondPlayer = () => {
+    if (playerVs === 1 && avatarArray[1] === undefined) {
+        if (avatarArray[0] === 'dracula') {
+            choosePlayer.selectPlayer()
+            let playGameHeader = document.body.querySelector('.playGameHeader');
+            playGameHeader.textContent = 'Second player select your avatar!';
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.dracula');
+            a.removeChild(e);
+        } else if (avatarArray[0] === 'scarecrow') {
+            choosePlayer.selectPlayer()
+            let playGameHeader = document.body.querySelector('.playGameHeader');
+            playGameHeader.textContent = 'Second player select your avatar!';
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.scarecrow');
+            a.removeChild(e);
+        } else if (avatarArray[0] === 'reaper') {
+            choosePlayer.selectPlayer()
+            let playGameHeader = document.body.querySelector('.playGameHeader');
+            playGameHeader.textContent = 'Second player select your avatar!';
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.reaper');
+            a.removeChild(e);
+        } else if (avatarArray[0] === 'frankenstein') {
+            choosePlayer.selectPlayer()
+            let playGameHeader = document.body.querySelector('.playGameHeader');
+            playGameHeader.textContent = 'Second player select your avatar!';
+            let a = document.body.querySelector('.startScreen');
+            let e = document.querySelector('.frankenstein');
+            a.removeChild(e);
+        }
+    }
+}
+
 // choose random computer avatar
 const computerAvatar = (avatar) => {
 
+    if (playerVs === 3) {
     function container (avatar) {
         let container = document.body.querySelector('.container');
         let playGameHeader = document.createElement('div');
@@ -363,6 +444,8 @@ const computerAvatar = (avatar) => {
         setTimeout(() => {
             document.getElementById('dracula').style.animation = "chosen 3s, spin 3s";
         }, "500");
+        let x = 'dracula';
+        avatarArray.push(x);
         let drac = removeAvatars('dracula');
     } else if (avatar === 'scarecrow') {
         let playerScarecrow = document.createElement('button');
@@ -373,6 +456,8 @@ const computerAvatar = (avatar) => {
         setTimeout(() => {
             document.getElementById('scarecrow').style.animation = "chosen 3s, spin 3s";
         }, "500");
+        let x = 'scarecrow';
+        avatarArray.push(x);
         let scare = removeAvatars('scarecrow');
     } else if (avatar === 'reaper') {
         let playerReaper = document.createElement('button');
@@ -383,6 +468,8 @@ const computerAvatar = (avatar) => {
         setTimeout(() => {
             document.getElementById('reaper').style.animation = "chosen2 3s, spin 3s";
         }, "500");
+        let x = 'reaper';
+        avatarArray.push(x);
         let reap = removeAvatars('reaper');
     } else if (avatar === 'frankenstein') {
         let playerFrankenstein = document.createElement('button');
@@ -393,6 +480,8 @@ const computerAvatar = (avatar) => {
         setTimeout(() => {
             document.getElementById('frankenstein').style.animation = "chosen2 3s, spin 3s";
         }, "500");
+        let x = 'frankenstein';
+        avatarArray.push(x);
         let frank = removeAvatars('frankenstein');
     }};
 
@@ -437,9 +526,10 @@ const computerAvatar = (avatar) => {
             container('reaper');
         }
     }
+}
 };
 
-computerAvatar();
+//computerAvatar();
 
 // make tic-tac-toe grid
 let gameboard = (function() {
@@ -543,4 +633,3 @@ let clickEvent = (function() {
         clickEvent9
     }
 })();
-

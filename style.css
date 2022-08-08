@@ -14,9 +14,10 @@ body {
     --icon-height: 15vh;
     --icon-width: 130px;
     --icon-margin-top: 15px;
-    --header-font-size: 5rem;
+    --header-font-size: 6vw;
     --button-hover: rgb(177, 177, 177);
     --button-active: rgb(143, 143, 143);
+    --button-mode-font-size: 4vw;
 }
 
 /* header */
@@ -34,6 +35,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 
 /* wanna play a game? */
 
@@ -68,7 +70,7 @@ body {
 
 .playerVsPlayerBtn {
     padding: 30px 50px;
-    font-size: 50px;
+    font-size: var(--button-mode-font-size);
     margin-top: 10vh;
     border-radius: 10px;
     width: 40vw;
@@ -85,7 +87,7 @@ body {
 
 .playerVsComputerBtn {
     padding: 30px 50px;
-    font-size: 50px;
+    font-size: var(--button-mode-font-size);
     margin-top: 10vh;
     border-radius: 10px;
     width: 40vw;
