@@ -228,19 +228,20 @@ let avatarSelect = (function () {
                 a.removeChild(d);
             } else if (avatarArray[0] === 'reaper') {
                 let b = document.querySelector('.scarecrow');
+                a.removeChild(b);
                 let d = document.querySelector('.frankenstein');
                 a.removeChild(d);
             } else if (avatarArray[0] === 'frankenstein') {
                 let b = document.querySelector('.reaper');
                 a.removeChild(b);
-                let c = document.querySelector('.reaper');
+                let c = document.querySelector('.scarecrow');
                 a.removeChild(c);
             } else {
             let b = document.querySelector('.scarecrow');
             a.removeChild(b);
             let c = document.querySelector('.reaper');
             a.removeChild(c);
-            let d = document.querySelector('.frankenstein');
+            let d = document.querySelector('.scarecrow');
             a.removeChild(d);
             }
         }, "10");
@@ -252,7 +253,10 @@ let avatarSelect = (function () {
         let drac = removeAvatars('dracula');
 
         setTimeout(() => {
-            return computerAvatar('dracula'), secondPlayer();
+            computerAvatar('dracula');
+            secondPlayer();
+            if (avatarArray[1] !== undefined) {
+            letsGame();}
         }, "3500");
     }
     function scarecrow () {
@@ -269,6 +273,7 @@ let avatarSelect = (function () {
                 a.removeChild(d);
             } else if (avatarArray[0] === 'reaper') {
                 let b = document.querySelector('.dracula');
+                a.removeChild(b);
                 let d = document.querySelector('.frankenstein');
                 a.removeChild(d);
             } else if (avatarArray[0] === 'frankenstein') {
@@ -292,7 +297,10 @@ let avatarSelect = (function () {
         let scare = removeAvatars('scarecrow');
 
         setTimeout(() => {
-            return computerAvatar('scarecrow'), secondPlayer();
+            computerAvatar('scarecrow');
+            secondPlayer();
+            if (avatarArray[1] !== undefined) {
+            letsGame();}
         }, "3500");
     }
     function reaper () {
@@ -309,6 +317,7 @@ let avatarSelect = (function () {
                 a.removeChild(d);
             } else if (avatarArray[0] === 'scarecrow') {
                 let b = document.querySelector('.dracula');
+                a.removeChild(b);
                 let d = document.querySelector('.frankenstein');
                 a.removeChild(d);
             } else if (avatarArray[0] === 'frankenstein') {
@@ -333,7 +342,10 @@ let avatarSelect = (function () {
         let reap = removeAvatars('reaper');
 
         setTimeout(() => {
-            return computerAvatar('reaper'), secondPlayer();
+            computerAvatar('reaper');
+            secondPlayer();
+            if (avatarArray[1] !== undefined) {
+            letsGame();}
         }, "3500");
     }
     function frankenstein () {
@@ -350,6 +362,7 @@ let avatarSelect = (function () {
                 a.removeChild(d);
             } else if (avatarArray[0] === 'scarecrow') {
                 let b = document.querySelector('.dracula');
+                a.removeChild(b);
                 let d = document.querySelector('.reaper');
                 a.removeChild(d);
             } else if (avatarArray[0] === 'reaper') {
@@ -376,7 +389,10 @@ let avatarSelect = (function () {
 
         
         setTimeout(() => {
-            return computerAvatar('frankenstein'), secondPlayer();
+            computerAvatar('frankenstein');
+            secondPlayer();
+            if (avatarArray[1] !== undefined) {
+            letsGame();}
         }, "3500");
     }
     return {
@@ -418,6 +434,7 @@ const secondPlayer = () => {
             let e = document.querySelector('.frankenstein');
             a.removeChild(e);
         }
+
     }
 }
 
@@ -525,9 +542,70 @@ const computerAvatar = (avatar) => {
         } else if (randomAvatar === 2) {
             container('reaper');
         }
-    }
+    } 
+    setTimeout(() => {
+        letsGame();
+    }, "3600");
 }
 };
+
+// Let's game scene
+const letsGame = () => {
+
+    const container = document.body.querySelector('.container');
+    const letsGameHeader = document.createElement('div');
+    container.appendChild(letsGameHeader);
+    letsGameHeader.classList.add('playGameHeader');
+    letsGameHeader.setAttribute('id', 'playGameHeader');
+
+    const letsGameDiv = document.createElement('div');
+    container.appendChild(letsGameDiv);
+    letsGameDiv.classList.add('letsGameDiv');
+    letsGameHeader.textContent = 'let\'s game!';
+
+    let firstAvatar = document.createElement('button');
+    letsGameDiv.appendChild(firstAvatar);
+    firstAvatar.setAttribute('id', 'firstAvatar');
+
+    const versus = document.createElement('p');
+    letsGameDiv.appendChild(versus);
+    versus.classList.add('versus')
+    versus.textContent = 'versus';
+
+    let secondAvatar = document.createElement('button');
+    letsGameDiv.appendChild(secondAvatar);
+    secondAvatar.setAttribute('id', 'secondAvatar');
+    
+    
+
+    if (avatarArray[0] === 'dracula') {
+            firstAvatar.classList.add('avatarDracula');
+        } else if (avatarArray[0] === 'scarecrow') {
+            firstAvatar.classList.add('avatarScarecrow');
+        } else if (avatarArray[0] === 'reaper') {
+            firstAvatar.classList.add('avatarReaper');
+        } else if (avatarArray[0] === 'frankenstein') {
+            firstAvatar.classList.add('avatarFrankenstein');
+    }
+    
+
+
+    if (avatarArray[1] === 'dracula') {
+            secondAvatar.classList.add('avatarDracula');
+        } else if (avatarArray[1] === 'scarecrow') {
+            secondAvatar.classList.add('avatarScarecrow');
+        } else if (avatarArray[1] === 'reaper') {
+            secondAvatar.classList.add('avatarReaper');
+        } else if (avatarArray[1] === 'frankenstein') {
+            secondAvatar.classList.add('avatarFrankenstein');   
+    }
+
+    firstAvatar.style.animation = "left 1.5s infinite";
+    secondAvatar.style.animation = "right 1.5s infinite";
+
+};
+
+//letsGame();
 
 //computerAvatar();
 

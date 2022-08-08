@@ -225,7 +225,83 @@ body {
 }
 
 
+/* let's game */
 
+.letsGameDiv {
+    display: grid;
+    grid-template-columns: 130px 250px 130px;
+    align-items: center;
+    gap: 50px;
+    animation: linear infinite;
+}
+
+@keyframes left {
+    0% {
+      left: 0;
+    }
+    50% { 
+      left: calc(100% - 100px); 
+     }
+    100% {
+      left: 0;     
+    }
+}
+
+@keyframes right {
+    0% {
+        right: 0;
+    }
+    50% { 
+        right: calc(100% - 100px); 
+     }
+    100% {
+        right: 0;     
+    }
+}
+
+.avatarDracula {
+    background: url(./images/dracula.png);  
+    background-repeat: no-repeat;
+    padding: 0;
+    height: var(--icon-height);
+    max-width: var(--icon-width);
+    margin-top: var(--icon-margin-top);
+    position: relative;
+}
+
+.avatarScarecrow {
+    background: url(./images/scarecrow.png);  
+    background-repeat: no-repeat;
+    padding: 0;
+    height: var(--icon-height);
+    max-width: var(--icon-width);
+    margin-top: var(--icon-margin-top);
+    position: relative;
+}
+
+.avatarReaper {
+    background: url(./images/reaper.png);  
+    background-repeat: no-repeat;
+    padding: 0;
+    height: var(--icon-height);
+    max-width: var(--icon-width);
+    margin-top: var(--icon-margin-top);
+    position: relative;
+}
+
+.avatarFrankenstein {
+    background: url(./images/frankenstein.png);  
+    background-repeat: no-repeat;
+    padding: 0;
+    height: var(--icon-height);
+    max-width: var(--icon-width);
+    margin-top: var(--icon-margin-top);
+    position: relative;
+}
+
+.versus {
+    font-size: 5rem;
+}
 
 button {
     border: none;
