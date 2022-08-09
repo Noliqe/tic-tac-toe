@@ -58,25 +58,27 @@ let chooseMode = (function () {
         let playerVsPlayer = document.createElement('button');
         container.appendChild(playerVsPlayer);
         playerVsPlayer.classList.add('playerVsPlayerBtn');
+        playerVsPlayer.setAttribute('id', 'playerVsPlayerBtn');
 
         playerVsPlayer.addEventListener('click', () => {
             chooseMode.removeContent(); 
             choosePlayer.selectPlayer();
             playerVs = 1;
         })
-        //playerVsPlayer.setAttribute('onclick', buttonVsPlayer());
+        
         playerVsPlayer.textContent = 'Player vs player';
         
         // player vs computer button
         let playerVsComputer = document.createElement('button');
         container.appendChild(playerVsComputer);
         playerVsComputer.classList.add('playerVsComputerBtn');
+        playerVsComputer.setAttribute('id', 'playerVsComputerBtn');
         playerVsComputer.addEventListener('click', () => {
             chooseMode.removeContent(); 
             choosePlayer.selectPlayer();
             playerVs = 3;
         })
-        //playerVsComputer.setAttribute('onclick', buttonVsComputer());
+        
         playerVsComputer.textContent = 'Player vs computer';
     }
 
@@ -583,6 +585,7 @@ const letsGame = () => {
     const letsGameDiv = document.createElement('div');
     container.appendChild(letsGameDiv);
     letsGameDiv.classList.add('letsGameDiv');
+    letsGameDiv.setAttribute('id', 'letGameDiv');
     letsGameHeader.textContent = 'let\'s game!';
 
     let firstAvatar = document.createElement('button');
@@ -592,6 +595,7 @@ const letsGame = () => {
     const versus = document.createElement('p');
     letsGameDiv.appendChild(versus);
     versus.classList.add('versus')
+    versus.setAttribute('id', 'versus');
     versus.textContent = 'VS';
 
     let secondAvatar = document.createElement('button');
@@ -667,6 +671,7 @@ let gameboard = (function() {
         const resetBtn = document.createElement('div');
         header.appendChild(resetBtn);
         resetBtn.classList.add('resetBtn');
+        resetBtn.setAttribute('id', 'resetBtn');
         resetBtn.textContent = 'Reset';
         resetBtn.addEventListener('click', () => {
             resetGrid();
@@ -677,6 +682,7 @@ let gameboard = (function() {
         const gameContainer = document.createElement('div');
         container.appendChild(gameContainer);
         gameContainer.classList.add('gameContainer');
+        gameContainer.setAttribute('id', 'gameContainer');
 
         //player one
         const playerOneDiv = document.createElement ('div');
@@ -760,70 +766,106 @@ const checkGame = (str) => {
 
     if (data[0][0] === str && data[0][1] === str && data[0][2] === str){
         if (str === 'o') {
-            alert('You have lost');
+            popUpScreenLose();
             gameOver = 1;
         } else {
-            alert('you have won');
+            popUpScreenWin();
             gameOver = 1;
         }
     } else if (data[1][0] === str && data[1][1] === str && data[1][2] === str) {
         if (str === 'o') {
-            alert('You have lost');
+            popUpScreenLose();
             gameOver = 1;
         } else {
-            alert('you have won');
+            popUpScreenWin();
             gameOver = 1;
         }
     } else if (data[2][0] === str && data[2][1] === str && data[2][2] === str) {
         if (str === 'o') {
-            alert('You have lost');
+            popUpScreenLose();
             gameOver = 1;
         } else {
-            alert('you have won');
+            popUpScreenWin();
             gameOver = 1;
         }
     } else if (data[0][0] === str && data[1][0] === str && data[2][0] === str) {
         if (str === 'o') {
-            alert('You have lost');
+            popUpScreenLose();
             gameOver = 1;
         } else {
-            alert('you have won');
+            popUpScreenWin();
             gameOver = 1;
         }
     } else if (data[0][1] === str && data[1][1] === str && data[2][1] === str) {
         if (str === 'o') {
-            alert('You have lost');
+            popUpScreenLose();
             gameOver = 1;
         } else {
-            alert('you have won');
+            popUpScreenWin();
             gameOver = 1;
         }
     } else if (data[0][2] === str && data[1][2] === str && data[2][2] === str) {
         if (str === 'o') {
-            alert('You have lost');
+            popUpScreenLose();
             gameOver = 1;
         } else {
-            alert('you have won');
+            popUpScreenWin();
             gameOver = 1;
         }
     } else if (data[0][0] === str && data[1][1] === str && data[2][2] === str) {
         if (str === 'o') {
-            alert('You have lost');
+            popUpScreenLose();
             gameOver = 1;
         } else {
-            alert('you have won');
+            popUpScreenWin();
             gameOver = 1;
         }
     } else if (data[0][2] === str && data[1][1] === str && data[2][0] === str) {
         if (str === 'o') {
-            alert('You have lost');
+            popUpScreenLose();
             gameOver = 1;
         } else {
-            alert('you have won');
+            popUpScreenWin();
             gameOver = 1;
         }
     }
 } 
+
+let popUpScreenWin = () => {
+    const container = document.body.querySelector('.container');
+    const popUpScreen = document.createElement('div');
+    container.appendChild(popUpScreen);
+    popUpScreen.classList.add('popUpScreen');
+    const popUp = document.createElement('div');
+    popUpScreen.appendChild(popUp);
+    popUp.classList.add('popUp');
+    popUp.setAttribute('id', 'popUp');
+    popUp.textContent = 'X has won!'
+    setTimeout(() => {
+        removePopUpScreen();
+    }, "2000");
+};
+
+let popUpScreenLose = () => {
+    const container = document.body.querySelector('.container');
+    const popUpScreen = document.createElement('div');
+    container.appendChild(popUpScreen);
+    popUpScreen.classList.add('popUpScreen');
+    const popUp = document.createElement('div');
+    popUpScreen.appendChild(popUp);
+    popUp.classList.add('popUp');
+    popUp.setAttribute('id', 'popUp');
+    popUp.textContent = 'O has won!'
+    setTimeout(() => {
+        removePopUpScreen();
+    }, "2000");
+};
+
+let removePopUpScreen = () => {
+    let x = document.body.querySelector('.container');
+    let y = document.querySelector('.popUpScreen');
+    x.removeChild(y);
+}
 
 let gameOver = 0;
 // click on button event
