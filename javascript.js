@@ -662,13 +662,23 @@ let gameboard = (function() {
     // create div
     function grid() {
 
+        //reset button
+        const header = document.body.querySelector('.header');
+        const resetBtn = document.createElement('div');
+        header.appendChild(resetBtn);
+        resetBtn.classList.add('resetBtn');
+        resetBtn.textContent = 'Reset';
+        resetBtn.addEventListener('click', () => {
+            resetGrid();
+        })
 
+        //game container
         const container = document.body.querySelector('.container');
         const gameContainer = document.createElement('div');
         container.appendChild(gameContainer);
         gameContainer.classList.add('gameContainer');
 
-
+        //player one
         const playerOneDiv = document.createElement ('div');
         gameContainer.appendChild(playerOneDiv);
         playerOneDiv.classList.add('playerOneDiv')
@@ -676,12 +686,13 @@ let gameboard = (function() {
         playerOneAvatar.setAttribute('id', 'playerOneAvatar');
         playerOneDiv.appendChild(playerOneAvatar);
 
-
+        //grid container
         const gridContainer = document.createElement('div');
         gameContainer.appendChild(gridContainer);
         gridContainer.setAttribute('id', 'gridContainer');
         gridContainer.classList.add('gridContainer')
 
+        //player two
         const playerTwoDiv = document.createElement ('div');
         gameContainer.appendChild(playerTwoDiv);
         playerTwoDiv.classList.add('playerTwoDiv')
@@ -689,6 +700,7 @@ let gameboard = (function() {
         playerTwoAvatar.setAttribute('id', 'playerTwoAvatar');
         playerTwoDiv.appendChild(playerTwoAvatar);
 
+        //check chosen avatar and apply to player one
         if (avatarArray[0] === 'dracula') {
             playerOneAvatar.classList.add('avatarDracula');
         } else if (avatarArray[0] === 'scarecrow') {
@@ -699,8 +711,7 @@ let gameboard = (function() {
             playerOneAvatar.classList.add('avatarFrankenstein');
     }
     
-
-
+        //check chosen avatar and apply to player two
     if (avatarArray[1] === 'dracula') {
             playerTwoAvatar.classList.add('avatarDracula');
         } else if (avatarArray[1] === 'scarecrow') {
@@ -711,6 +722,7 @@ let gameboard = (function() {
             playerTwoAvatar.classList.add('avatarFrankenstein');   
     }
 
+        // create 9 div's for grid
         for (let i = 0; i < 9; i++) {
             let div = document.createElement('div');
             document.body.appendChild(div);
@@ -743,6 +755,7 @@ let data = [
     ['unique7', 'unique8', 'unique9']
 ];
 
+//check game on three on a row
 const checkGame = (str) => {
 
     if (data[0][0] === str && data[0][1] === str && data[0][2] === str){
@@ -797,21 +810,20 @@ const checkGame = (str) => {
 } 
 
 
-
 // click on button event
 const clickPlayerVsPlayer = () => {
 
     let myArray = ['unique1','unique2','unique3','unique4','unique5','unique6','unique7','unique8','unique9']
     let gameArray = [];
     let playerTurn = 0;
+    
 
+    //computer automatic play
 function computerPlay() {
 if (playerVs === 3 && playerTurn === 1) {
     setTimeout(() => {
     let randomIndex = Math.floor(Math.random() * myArray.length);
     let randomItem = myArray.splice(randomIndex, 1)[0];
-    console.log("random item: %o", randomItem);
-    console.log("remaining items: %o", myArray);
     playerTurn = 0;
 
     if (randomItem === 'unique1') {
@@ -847,13 +859,11 @@ if (playerVs === 3 && playerTurn === 1) {
     }, "50");
 }, "500");
 }}
-
+    //checks string on position array and removes string
     function indexArray (str) {
         const index = myArray.indexOf(str);
         if (index > -1) {
             myArray.splice(index, 1);
-            //console.log("player: %o", index);
-            //console.log("remaining items: %o", myArray);
         }
     }
 
@@ -1023,3 +1033,27 @@ if (playerVs === 3 && playerTurn === 1) {
 
 
 };
+
+const resetGrid = () => {
+
+    unique1.textContent = '';
+    unique2.textContent = '';
+    unique3.textContent = '';
+    unique4.textContent = '';
+    unique5.textContent = '';
+    unique6.textContent = '';
+    unique7.textContent = '';
+    unique8.textContent = '';
+    unique9.textContent = '';
+
+    myArray = ['unique1','unique2','unique3','unique4','unique5','unique6','unique7','unique8','unique9']
+    gameArray = [];
+
+    data = [
+        ['unique1', 'unique2', 'unique3'],
+        ['unique4', 'unique5', 'unique6'],
+        ['unique7', 'unique8', 'unique9']
+    ];
+    playerTurn = 0;
+    clickPlayerVsPlayer();
+}
