@@ -662,6 +662,7 @@ let gameboard = (function() {
     // create div
     function grid() {
 
+
         const container = document.body.querySelector('.container');
         const gameContainer = document.createElement('div');
         container.appendChild(gameContainer);
@@ -719,13 +720,15 @@ let gameboard = (function() {
             counter += 1;
         }
     }
-    
+
     return {
-        grid,
+        grid
     };
 })();
 
 //gameboard.grid()
+
+
 
 let player = (function() {
 
@@ -797,26 +800,75 @@ const checkGame = (str) => {
 
 // click on button event
 const clickPlayerVsPlayer = () => {
+
+    let myArray = ['unique1','unique2','unique3','unique4','unique5','unique6','unique7','unique8','unique9']
     let gameArray = [];
     let playerTurn = 0;
-let unique1 = document.getElementById('unique1');
-let unique2 = document.getElementById('unique2');
-let unique3 = document.getElementById('unique3');
-let unique4 = document.getElementById('unique4');
-let unique5 = document.getElementById('unique5');
-let unique6 = document.getElementById('unique6');
-let unique7 = document.getElementById('unique7');
-let unique8 = document.getElementById('unique8');
-if (playerVs === 1) {
+
+function computerPlay() {
+if (playerVs === 3 && playerTurn === 1) {
+    setTimeout(() => {
+    let randomIndex = Math.floor(Math.random() * myArray.length);
+    let randomItem = myArray.splice(randomIndex, 1)[0];
+    console.log("random item: %o", randomItem);
+    console.log("remaining items: %o", myArray);
+    playerTurn = 0;
+
+    if (randomItem === 'unique1') {
+        data[0][0]= 'o';
+        unique1.textContent = 'O';
+    } else if (randomItem === 'unique2') {
+        data[0][1] = 'o';
+        unique2.textContent = 'O';
+    } else if (randomItem === 'unique3') {
+        data[0][2] = 'o';
+        unique3.textContent = 'O';
+    } else if (randomItem === 'unique4') {
+        data[1][0] = 'o';
+        unique4.textContent = 'O';
+    } else if (randomItem === 'unique5') {
+        data[1][1] = 'o';
+        unique5.textContent = 'O';
+    } else if (randomItem === 'unique6') {
+        data[1][2] = 'o';
+        unique6.textContent = 'O';
+    } else if (randomItem === 'unique7') {
+        data[2][0] = 'o';
+        unique7.textContent = 'O';
+    } else if (randomItem === 'unique8') {
+        data[2][1] = 'o';
+        unique8.textContent = 'O';
+    } else if (randomItem === 'unique9') {
+        data[2][2] = 'o';
+        unique9.textContent = 'O';
+    }
+    setTimeout(() => {
+        checkGame('o');
+    }, "50");
+}, "500");
+}}
+
+    function indexArray (str) {
+        const index = myArray.indexOf(str);
+        if (index > -1) {
+            myArray.splice(index, 1);
+            //console.log("player: %o", index);
+            //console.log("remaining items: %o", myArray);
+        }
+    }
+
     unique1.addEventListener('click', () => {
         if (gameArray.indexOf('unique1') === -1) {
-            gameArray.push('unique1');
             if (playerTurn === 0) {
+                gameArray.push('unique1');
+                indexArray('unique1');
                 unique1.textContent = 'X';
                 playerTurn = 1;
                 data[0][0]= 'x';
                 checkGame('x');
-            } else if (playerTurn === 1) {
+                computerPlay();
+            } else if (playerTurn === 1 && playerVs === 1) {
+                gameArray.push('unique1');
                 unique1.textContent = 'O';
                 playerTurn = 0;
                 data[0][0]= 'o';
@@ -825,13 +877,16 @@ if (playerVs === 1) {
     })
     unique2.addEventListener('click', () => {
         if (gameArray.indexOf('unique2') === -1) {
-            gameArray.push('unique2');
             if (playerTurn === 0) {
+                gameArray.push('unique2');
+                indexArray('unique2');
                 unique2.textContent = 'X';
                 playerTurn = 1;
                 data[0][1]= 'x';
                 checkGame('x');
-            } else if (playerTurn === 1) {
+                computerPlay();
+            } else if (playerTurn === 1 && playerVs === 1) {
+                gameArray.push('unique2');
                 unique2.textContent = 'O';
                 playerTurn = 0;
                 data[0][1]= 'o';
@@ -840,13 +895,16 @@ if (playerVs === 1) {
     })
     unique3.addEventListener('click', () => {
         if (gameArray.indexOf('unique3') === -1) {
-            gameArray.push('unique3');
             if (playerTurn === 0) {
+                gameArray.push('unique3');
+                indexArray('unique3');
                 unique3.textContent = 'X';
                 playerTurn = 1;
                 data[0][2]= 'x';
                 checkGame('x');
-            } else if (playerTurn === 1) {
+                computerPlay();
+            } else if (playerTurn === 1 && playerVs === 1) {
+                gameArray.push('unique3');
                 unique3.textContent = 'O';
                 playerTurn = 0;
                 data[0][2]= 'o';
@@ -855,13 +913,16 @@ if (playerVs === 1) {
     })
     unique4.addEventListener('click', () => {
         if (gameArray.indexOf('unique4') === -1) {
-            gameArray.push('unique4');
             if (playerTurn === 0) {
+                gameArray.push('unique4');
+                indexArray('unique4');
                 unique4.textContent = 'X';
                 playerTurn = 1;
                 data[1][0]= 'x';
                 checkGame('x');
-            } else if (playerTurn === 1) {
+                computerPlay();
+            } else if (playerTurn === 1 && playerVs === 1) {
+                gameArray.push('unique4');
                 unique4.textContent = 'O';
                 playerTurn = 0;
                 data[1][0]= 'o';
@@ -870,13 +931,16 @@ if (playerVs === 1) {
     })
     unique5.addEventListener('click', () => {
         if (gameArray.indexOf('unique5') === -1) {
-            gameArray.push('unique5');
             if (playerTurn === 0) {
+                gameArray.push('unique5');
+                indexArray('unique5');
                 unique5.textContent = 'X';
                 playerTurn = 1;
                 data[1][1]= 'x';
                 checkGame('x');
-            } else if (playerTurn === 1) {
+                computerPlay();
+            } else if (playerTurn === 1 && playerVs === 1) {
+                gameArray.push('unique5');
                 unique5.textContent = 'O';
                 playerTurn = 0;
                 data[1][1]= 'o';
@@ -885,13 +949,16 @@ if (playerVs === 1) {
     })
     unique6.addEventListener('click', () => {
         if (gameArray.indexOf('unique6') === -1) {
-            gameArray.push('unique6');
             if (playerTurn === 0) {
+                gameArray.push('unique6');
+                indexArray('unique6');
                 unique6.textContent = 'X';
                 playerTurn = 1;
                 data[1][2]= 'x';
                 checkGame('x');
-            } else if (playerTurn === 1) {
+                computerPlay();
+            } else if (playerTurn === 1 && playerVs === 1) {
+                gameArray.push('unique6');
                 unique6.textContent = 'O';
                 playerTurn = 0;
                 data[1][2]= 'o';
@@ -900,13 +967,16 @@ if (playerVs === 1) {
     })
     unique7.addEventListener('click', () => {
         if (gameArray.indexOf('unique7') === -1) {
-            gameArray.push('unique7');
             if (playerTurn === 0) {
+                gameArray.push('unique7');
+                indexArray('unique7');
                 unique7.textContent = 'X';
                 playerTurn = 1;
                 data[2][0]= 'x';
                 checkGame('x');
-            } else if (playerTurn === 1) {
+                computerPlay();
+            } else if (playerTurn === 1 && playerVs === 1) {
+                gameArray.push('unique7');
                 unique7.textContent = 'O';
                 playerTurn = 0;
                 data[2][0]= 'o';
@@ -917,11 +987,15 @@ if (playerVs === 1) {
         if (gameArray.indexOf('unique8') === -1) {
             gameArray.push('unique8');
             if (playerTurn === 0) {
+                gameArray.push('unique8');
+                indexArray('unique8');
                 unique8.textContent = 'X';
                 playerTurn = 1;
                 data[2][1]= 'x';
                 checkGame('x');
-            } else if (playerTurn === 1) {
+                computerPlay();
+            } else if (playerTurn === 1 && playerVs === 1) {
+                gameArray.push('unique8');
                 unique8.textContent = 'O';
                 playerTurn = 0;
                 data[2][1]= 'o';
@@ -930,18 +1004,22 @@ if (playerVs === 1) {
     })
     unique9.addEventListener('click', () => {
         if (gameArray.indexOf('unique9') === -1) {
-            gameArray.push('unique9');
             if (playerTurn === 0) {
+                gameArray.push('unique9');
+                indexArray('unique9');
                 unique9.textContent = 'X';
                 playerTurn = 1;
                 data[2][2]= 'x';
                 checkGame('x');
-            } else if (playerTurn === 1) {
+                computerPlay();
+            } else if (playerTurn === 1 && playerVs === 1) {
+                gameArray.push('unique9');
                 unique9.textContent = 'O';
                 playerTurn = 0;
                 data[2][2]= 'o';
                 checkGame('o');
             }}
     })
-}
+
+
 };

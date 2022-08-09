@@ -17,7 +17,7 @@ body {
     --header-font-size: 6vw;
     --button-hover: rgb(177, 177, 177);
     --button-active: rgb(143, 143, 143);
-    --button-mode-font-size: 4vw;
+    --button-mode-font-size: 4vw; 
 }
 
 /* header */
