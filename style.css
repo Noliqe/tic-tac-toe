@@ -41,8 +41,8 @@
     .playGameHeader{
         font-size: 30px !important;
     }
-    .versus {
-        font-size: 30px !important;
+    #versus {
+        font-size: 30px;
         text-align: center;
     }
 }
@@ -478,3 +478,20 @@ button {
 }
 
 /* footer */
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playAgainBtn {
+    margin-top: 20px;
+    width: 100px;
+    padding: 10px;
+    border: 2px solid black;
+    background-color: aliceblue;
+    box-shadow: 2px 2px 2px black;
+    border-radius: 10px;
+    text-align: center;
+}

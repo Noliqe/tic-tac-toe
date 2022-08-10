@@ -602,8 +602,6 @@ const letsGame = () => {
     letsGameDiv.appendChild(secondAvatar);
     secondAvatar.setAttribute('id', 'secondAvatar');
     
-    
-
     if (avatarArray[0] === 'dracula') {
             firstAvatar.classList.add('avatarDracula');
         } else if (avatarArray[0] === 'scarecrow') {
@@ -614,8 +612,6 @@ const letsGame = () => {
             firstAvatar.classList.add('avatarFrankenstein');
     }
     
-
-
     if (avatarArray[1] === 'dracula') {
             secondAvatar.classList.add('avatarDracula');
         } else if (avatarArray[1] === 'scarecrow') {
@@ -625,9 +621,6 @@ const letsGame = () => {
         } else if (avatarArray[1] === 'frankenstein') {
             secondAvatar.classList.add('avatarFrankenstein');   
     }
-
-    //firstAvatar.style.animation = "left 1.5s infinite";
-    //secondAvatar.style.animation = "right 1.5s infinite";
 
     setTimeout(() => {
         removeLetsGame();
@@ -643,9 +636,6 @@ const removeLetsGame = () => {
     let a = document.body.querySelector('.container');
     let b = document.body.querySelector('.playGameHeader');
     let c = document.body.querySelector('.letsGameDiv');
-    //let d = document.body.querySelector('.firstAvatar');
-    //let e = document.body.querySelector('.secondAvatar');
-
     a.removeChild(c);
     a.removeChild(b);
 }
@@ -747,14 +737,6 @@ let gameboard = (function() {
 //gameboard.grid()
 
 
-
-let player = (function() {
-
-    return {
-
-    }
-})();
-
 let data = [
     ['unique1', 'unique2', 'unique3'],
     ['unique4', 'unique5', 'unique6'],
@@ -828,6 +810,12 @@ const checkGame = (str) => {
             popUpScreenWin();
             gameOver = 1;
         }
+    } if (gameOver === 1) {
+        setTimeout(() => {
+            playAgain();
+        }, "2000");
+    } if (gameArray.length === 9 && gameOver === 0) {
+        popUpScreenDraw();
     }
 } 
 
@@ -840,7 +828,7 @@ let popUpScreenWin = () => {
     popUpScreen.appendChild(popUp);
     popUp.classList.add('popUp');
     popUp.setAttribute('id', 'popUp');
-    popUp.textContent = 'X has won!'
+    popUp.textContent = 'X has won!';
     setTimeout(() => {
         removePopUpScreen();
     }, "2000");
@@ -855,9 +843,25 @@ let popUpScreenLose = () => {
     popUpScreen.appendChild(popUp);
     popUp.classList.add('popUp');
     popUp.setAttribute('id', 'popUp');
-    popUp.textContent = 'O has won!'
+    popUp.textContent = 'O has won!';
     setTimeout(() => {
         removePopUpScreen();
+    }, "2000");
+};
+
+let popUpScreenDraw = () => {
+    const container = document.body.querySelector('.container');
+    const popUpScreen = document.createElement('div');
+    container.appendChild(popUpScreen);
+    popUpScreen.classList.add('popUpScreen');
+    const popUp = document.createElement('div');
+    popUpScreen.appendChild(popUp);
+    popUp.classList.add('popUp');
+    popUp.setAttribute('id', 'popUp');
+    popUp.textContent = 'Draw!';
+    setTimeout(() => {
+        removePopUpScreen();
+        playAgain();
     }, "2000");
 };
 
@@ -867,22 +871,43 @@ let removePopUpScreen = () => {
     x.removeChild(y);
 }
 
+let removePlayAgainBtn = () => {
+    let x = document.body.querySelector('.footer');
+    let y = document.querySelector('.playAgainBtn');
+    x.removeChild(y);
+}
+
+// play again button
+let playAgain = () => {
+    const footer = document.body.querySelector('.footer');
+    const playAgainBtn = document.createElement('div');
+    footer.appendChild(playAgainBtn);
+    playAgainBtn.classList.add('playAgainBtn');
+    playAgainBtn.setAttribute('id', 'playAgainBtn');
+    playAgainBtn.textContent = 'Play again';
+    playAgainBtn.addEventListener('click', () => {
+        gameOver = 0;
+        resetGrid();
+        removePlayAgainBtn();
+    })
+}
+
+let gameArray = [];
 let gameOver = 0;
+
+
 // click on button event
 const clickPlayerVsPlayer = () => {
 
     let myArray = ['unique1','unique2','unique3','unique4','unique5','unique6','unique7','unique8','unique9']
-    let gameArray = [];
-    let playerTurn = 0;
     
-
+    let playerTurn = 0;
     //computer automatic play
 function computerPlay() {
 if (playerVs === 3 && playerTurn === 1 && gameOver === 0) {
     setTimeout(() => {
     let randomIndex = Math.floor(Math.random() * myArray.length);
     let randomItem = myArray.splice(randomIndex, 1)[0];
-    playerTurn = 0;
 
     if (randomItem === 'unique1') {
         data[0][0]= 'o';
@@ -911,7 +936,7 @@ if (playerVs === 3 && playerTurn === 1 && gameOver === 0) {
     } else if (randomItem === 'unique9') {
         data[2][2] = 'o';
         unique9.textContent = 'O';
-    }
+    }     playerTurn = 0;
     setTimeout(() => {
         checkGame('o');
     }, "50");
@@ -1053,7 +1078,6 @@ if (playerVs === 3 && playerTurn === 1 && gameOver === 0) {
     })
     unique8.addEventListener('click', () => {
         if (gameArray.indexOf('unique8') === -1) {
-            gameArray.push('unique8');
             if (playerTurn === 0 && gameOver === 0) {
                 gameArray.push('unique8');
                 indexArray('unique8');
@@ -1093,6 +1117,10 @@ if (playerVs === 3 && playerTurn === 1 && gameOver === 0) {
 };
 
 const resetGrid = () => {
+
+    if (gameOver === 1) {
+        removePlayAgainBtn();
+    }
 
     unique1.textContent = '';
     unique2.textContent = '';
